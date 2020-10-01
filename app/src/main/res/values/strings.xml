@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">SQLS</string>
+    <string name="find_tutor">Find <s>Tutor</s></string>
+
+    <string name="dummy_description">
+        \n
+        This is a dummy Video description, to check whether the size is fine and the color fits well enough.\n\n
+        1. %\n
+        2. %%\n
+        3. %\n
+        4. %%\n
+        \n
+        1. %\n
+        2. %%\n
+        3. %\n
+        4. %%\n
+        \n
+        This is to check if scrolling works fine.
+
+    </string>
+
+</resources>
