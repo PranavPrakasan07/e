@@ -1,92 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#212121"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp"
-    tools:context=".Options_Menu">
-
     <Button
-        android:id="@+id/apply_filter"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:id="@+id/back_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/input_cards"
-        android:text="APPLY FILTER"
-        android:textColor="#FFF"
-        android:textSize="30sp"
-        android:layout_margin="16dp"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="35dp" />
+        android:text="BACK"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/find_tutor"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:text="FIND TUTOR"
-        android:background="@drawable/input_cards"
-        android:textSize="30sp"
-        android:textColor="#FFF"
-        android:layout_below="@+id/apply_filter"
-        android:layout_margin="16dp"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="35dp" />
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_button" />
 
-    <Button
-        android:id="@+id/create_user_profile"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:text="CREATE User PROFILE"
-        android:background="@drawable/correct_data"
-        android:textSize="30sp"
-        android:textColor="#FFF"
-        android:layout_below="@id/find_tutor"
-        android:layout_margin="16dp"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="35dp" />
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider7">
 
-    <Button
-        android:id="@+id/my_profile"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:text="MY PROFILE"
-        android:background="@drawable/input_cards"
-        android:textSize="30sp"
-        android:textColor="#FFF"
-        android:layout_below="@id/create_user_profile"
-        android:layout_margin="16dp"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="35dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            tools:context=".Options_Menu"
+            tools:layout_editor_absoluteY="73dp">
 
-    <Button
-        android:id="@+id/find_video"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:text="FIND VIDEO"
-        android:textColor="#FFF"
-        android:background="@drawable/input_cards"
-        android:textSize="30sp"
-        android:layout_below="@id/my_profile"
-        android:layout_margin="16dp"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="35dp" />
+            <Button
+                android:id="@+id/apply_filter"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/input_cards"
+                android:text="APPLY FILTER"
+                android:textColor="#FFF"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="183dp"
+                tools:layout_editor_absoluteY="35dp" />
 
-    <Button
-        android:id="@+id/create_tutor_profile"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:text="Create Tutor Profile"
-        android:background="@drawable/correct_data"
-        android:textSize="30sp"
-        android:textColor="#FFF"
-        android:layout_below="@id/find_video"
-        android:layout_margin="16dp"
-        tools:layout_editor_absoluteX="183dp"
-        tools:layout_editor_absoluteY="35dp" />
-</RelativeLayout>
-</ScrollView>
+            <Button
+                android:id="@+id/find_tutor"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_below="@+id/apply_filter"
+                android:layout_margin="16dp"
+                android:background="@drawable/input_cards"
+                android:text="FIND TUTOR"
+                android:textColor="#FFF"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="183dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <Button
+                android:id="@+id/create_user_profile"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_below="@id/find_tutor"
+                android:layout_margin="16dp"
+                android:background="@drawable/correct_data"
+                android:text="CREATE User PROFILE"
+                android:textColor="#FFF"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="183dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <Button
+                android:id="@+id/my_profile"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_below="@id/create_user_profile"
+                android:layout_margin="16dp"
+                android:background="@drawable/input_cards"
+                android:text="MY PROFILE"
+                android:textColor="#FFF"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="183dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <Button
+                android:id="@+id/find_video"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_below="@id/my_profile"
+                android:layout_margin="16dp"
+                android:background="@drawable/input_cards"
+                android:text="FIND VIDEO"
+                android:textColor="#FFF"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="183dp"
+                tools:layout_editor_absoluteY="35dp" />
+
+            <Button
+                android:id="@+id/create_tutor_profile"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_below="@id/find_video"
+                android:layout_margin="16dp"
+                android:background="@drawable/correct_data"
+                android:text="Create Tutor Profile"
+                android:textColor="#FFF"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="183dp"
+                tools:layout_editor_absoluteY="35dp" />
+        </RelativeLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

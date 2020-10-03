@@ -44,13 +44,13 @@
 
             <Button
                 android:id="@+id/playbutton"
-                android:background="@drawable/correct_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
                 android:layout_margin="8dp"
-                android:text="Watch" />
+                android:background="@drawable/incorrect_data"
+                android:text="Watch"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:background="#313131"
@@ -121,16 +121,19 @@
         android:layout_below="@id/divider3"/>
 
     <Button
-        android:visibility="visible"
         android:id="@+id/desc_appear_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/view_tutor"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/input_cards"
-        android:layout_margin="8dp"
-        android:text="View Description"
-        android:textSize="18sp"
+        android:text="Hide Description"
         android:textColor="#FFF"
-        android:layout_below="@id/view_tutor"/>
+        android:textSize="18sp"
+        android:visibility="visible" />
 
     <View
         android:id="@+id/divider4"
@@ -149,15 +152,15 @@
 
         <TextView
             android:id="@+id/video_description"
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textAlignment="gravity"
             android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/dummy_description"
+            android:textAlignment="gravity"
             android:textColor="#FFF"
-            android:textSize="18sp"
-            android:text="@string/dummy_description" />
+            android:textSize="18sp" />
 
     </ScrollView>
 

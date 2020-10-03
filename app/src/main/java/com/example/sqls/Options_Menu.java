@@ -9,18 +9,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Options_Menu extends AppCompatActivity {
 
+    Button back_button;
     Button user_login, tutor_login;
-    Button find_tutor, find_video;
+    Button find_tutor, find_video, profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options__menu);
 
+        back_button = findViewById(R.id.back_button);
         user_login = findViewById(R.id.create_user_profile);
         tutor_login = findViewById(R.id.create_tutor_profile);
         find_tutor = findViewById(R.id.find_tutor);
         find_video = findViewById(R.id.find_video);
+        profile = findViewById(R.id.my_profile);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), VideoMainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         user_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +60,13 @@ public class Options_Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), VideoMainActivity.class));
+            }
+        });
+
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), UploadActivity.class));
             }
         });
     }

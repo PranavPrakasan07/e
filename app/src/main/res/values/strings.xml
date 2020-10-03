@@ -18,5 +18,9 @@
         This is to check if scrolling works fine.
 
     </string>
+    <string name="upload_message">In order to ensure legitimacy of content, we maintain a review and
+        upload policy, hence, tutors have to upload their images, videos in another storage location,
+        (e.g. Google Drive) and share the link of the uploaded video. \n\nThis is done in order to ensure the
+    legitimacy and we never question the quality of the content.</string>
 
 </resources>
