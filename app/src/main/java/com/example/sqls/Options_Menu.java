@@ -11,7 +11,7 @@ public class Options_Menu extends AppCompatActivity {
 
     Button back_button;
     Button user_login, tutor_login;
-    Button find_tutor, find_video, profile;
+    Button find_tutor, find_video, profile, apply_filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,15 @@ public class Options_Menu extends AppCompatActivity {
         find_tutor = findViewById(R.id.find_tutor);
         find_video = findViewById(R.id.find_video);
         profile = findViewById(R.id.my_profile);
+        apply_filter = findViewById(R.id.apply_filter);
+
+        apply_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Login_user.class);
+                startActivity(intent);
+            }
+        });
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +45,7 @@ public class Options_Menu extends AppCompatActivity {
         user_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Login_user.class);
+                Intent intent = new Intent(getApplicationContext(), Sign_up_user.class);
                 startActivity(intent);
             }
         });
@@ -44,7 +53,7 @@ public class Options_Menu extends AppCompatActivity {
         tutor_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
+                Intent intent = new Intent(getApplicationContext(), Sign_up.class);
                 startActivity(intent);
             }
         });
@@ -59,14 +68,14 @@ public class Options_Menu extends AppCompatActivity {
         find_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), VideoMainActivity.class));
+                startActivity(new Intent(getApplicationContext(), FindVideo.class));
             }
         });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), UploadActivity.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
     }

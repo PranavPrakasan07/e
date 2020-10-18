@@ -179,7 +179,7 @@ public class Sign_up extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Sign_up.this, "Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Sign_up.this, "Verifying", Toast.LENGTH_SHORT).show();
 
                 if (!TextUtils.isEmpty(name_text.getText().toString()) && !TextUtils.isEmpty(email_text.getText().toString())
                         && !TextUtils.isEmpty(password_text.getText().toString()) && !TextUtils.isEmpty(contact_text.getText().toString())){

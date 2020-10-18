@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
+    android:background="@drawable/back"
     tools:context=".Login">
 
     <Button
@@ -16,6 +16,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/input_cards"
         android:padding="10dp"
+        android:fontFamily="@font/montserrat_medium"
         android:text="Sign Up"
         android:textColor="#FFF"
         android:textSize="20sp"
@@ -42,10 +43,10 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:layout_marginStart="1dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
+            android:layout_marginEnd="8dp"
+            android:background="#ff5983"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -59,6 +60,7 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_cards"
         android:hint="someone@gmail.com"
+        android:fontFamily="@font/montserrat_light"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
         android:textColor="#FFF"
@@ -77,6 +79,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/input_cards"
+            android:fontFamily="@font/montserrat_light"
             android:hint="Password"
             android:inputType="textPassword"
             android:textAlignment="center"
@@ -95,8 +98,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="46dp"
-        android:background="@drawable/input_cards"
+        android:background="@drawable/correct_data"
         android:padding="10dp"
+        android:fontFamily="@font/montserrat_medium"
         android:text="Login"
         android:textColor="#FFF"
         android:textSize="20sp"
@@ -113,7 +117,23 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:text="Haven't been here before?"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/montserrat_light"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

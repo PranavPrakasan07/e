@@ -1,9 +1,13 @@
 package com.example.sqls;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Player extends AppCompatActivity {
 
-    private Button desc_show_button;
+    private Button desc_show_button, sub_button;
     private ScrollView desc_scroller;
 
     @Override
@@ -28,6 +32,7 @@ public class Player extends AppCompatActivity {
 
         desc_show_button = findViewById(R.id.desc_appear_button);
         desc_scroller = findViewById(R.id.description_scroller);
+        sub_button = findViewById(R.id.playbutton);
 
         desc_show_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +47,7 @@ public class Player extends AppCompatActivity {
                 }
             }
         });
+
 
 //        TextView title = findViewById(R.id.video_title);
         TextView desc = findViewById(R.id.video_description);
@@ -59,12 +65,33 @@ public class Player extends AppCompatActivity {
         desc.setText(video.getDescription());
         //getSupportActionBar().setTitle(video.getTitle());
 
-        Uri videoUri = Uri.parse(video.getVideoURL());
+        final Uri videoUri = Uri.parse(video.getVideoURL());
         videoPlayer.setVideoURI(videoUri);
 
         MediaController mediaController = new MediaController(this);
         videoPlayer.setMediaController(mediaController);
 
+
+        SubDB studentDB = new SubDB(getApplicationContext());
+        SQLiteDatabase database = studentDB.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        int row;
+
+        try {
+            contentValues.put("videoLink", String.valueOf(videoUri));
+
+            row = (int)database.insert("watch_history", null, contentValues);
+
+            Log.d("Message", Integer.toString(row));
+
+            SQLiteDatabase database1 = studentDB.getReadableDatabase();
+            String[] projection = {"videoLink"};
+
+            Cursor cursor = database1.query("watch_history", projection,null, null, null, null, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         videoPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override

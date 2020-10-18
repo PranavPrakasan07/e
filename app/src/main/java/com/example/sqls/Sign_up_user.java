@@ -72,7 +72,7 @@ public class Sign_up_user extends AppCompatActivity {
                 }
 
                 try {
-                    id = "TTA" + (9999999 - totalUsers);
+                    id = "UUA" + (9999999 - totalUsers);
                     salt_string = Arrays.toString(salt);
                     hash = get_SHA_1_SecurePassword(password_text.getText().toString(), salt);
                     Log.d("Hash", hash);
@@ -156,12 +156,12 @@ public class Sign_up_user extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Sign_up_user.this, "Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Sign_up_user.this, "Verifying", Toast.LENGTH_SHORT).show();
 
                 if (!TextUtils.isEmpty(name_text.getText().toString()) && !TextUtils.isEmpty(email_text.getText().toString())
                         && !TextUtils.isEmpty(password_text.getText().toString()) && !TextUtils.isEmpty(contact_text.getText().toString())){
                     insert();
-                    startActivity(new Intent(getApplicationContext(), Login.class));
+                    startActivity(new Intent(getApplicationContext(), Login_user.class));
                 }
                 else{
                     Toast.makeText(Sign_up_user.this, "Please fill in all credentials", Toast.LENGTH_SHORT).show();

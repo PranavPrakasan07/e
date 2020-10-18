@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212121"
+    android:background="@drawable/back"
     tools:context=".Sign_up_user">
 
     <ImageView
@@ -43,6 +43,7 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_cards"
         android:hint="User Name"
+        android:fontFamily="@font/montserrat_light"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="#FFF"
@@ -61,6 +62,7 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_cards"
         android:hint="someone@gmail.com"
+        android:fontFamily="@font/montserrat_light"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
         android:textColor="#FFF"
@@ -78,6 +80,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_cards"
+        android:fontFamily="@font/montserrat_light"
         android:hint="Password"
         android:inputType="textPassword"
         android:textAlignment="center"
@@ -96,6 +99,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_cards"
+        android:fontFamily="@font/montserrat_light"
         android:hint="Mobile Number"
         android:inputType="phone"
         android:textAlignment="center"
@@ -115,6 +119,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/input_cards"
+        android:fontFamily="@font/montserrat_medium"
+
         android:padding="10dp"
         android:text="Sign Up"
         android:textColor="#FFF"

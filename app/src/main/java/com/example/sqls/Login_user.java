@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,8 @@ import java.sql.Statement;
 import java.util.Arrays;
 
 public class Login_user extends AppCompatActivity {
+
+    ProgressBar progressBar;
 
     EditText password_text, email_text;
     Button login, signup;
@@ -43,6 +46,10 @@ public class Login_user extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
+
+        progressBar = findViewById(R.id.progressBar3);
+        progressBar.setVisibility(View.GONE);
+
 
         password_text = findViewById(R.id.password);
         email_text = findViewById(R.id.email);
@@ -90,13 +97,16 @@ public class Login_user extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Login_user.this, "Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login_user.this, "Verifying", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.VISIBLE);
 
                 if (!TextUtils.isEmpty(email_text.getText().toString()) && !TextUtils.isEmpty(password_text.getText().toString())){
                     check();
                 }
                 else{
                     Toast.makeText(Login_user.this, "Please fill in all credentials", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -117,8 +127,8 @@ public class Login_user extends AppCompatActivity {
 
                     if (resultSet.getString(5).equals(email_text.getText().toString())) {
 
-                        int len = resultSet.getString(8).length();
-                        String res = resultSet.getString(8).substring(1, len-1);
+                        int len = resultSet.getString(7).length();
+                        String res = resultSet.getString(7).substring(1, len-1);
                         String[] array = res.split(", ");
 
                         Log.d("String array", Arrays.toString(array));
@@ -141,7 +151,6 @@ public class Login_user extends AppCompatActivity {
                         }
 
                         if (hash.equals(resultSet.getString(4))){
-                            Toast.makeText(this, "Correct Password", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
 
@@ -149,7 +158,9 @@ public class Login_user extends AppCompatActivity {
 
                 }
 
-                Toast.makeText(this, "Inorrect Password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+
 
 
             } catch (SQLException e) {

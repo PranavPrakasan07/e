@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.security.MessageDigest;
@@ -27,6 +28,8 @@ public class Login extends AppCompatActivity {
     EditText password_text, email_text;
     Button login, signup;
 
+    ProgressBar progressBar;
+
     private static String ip = "192.168.43.205";
     private static String port = "1433";
     private static String Classes = "net.sourceforge.jtds.jdbc.Driver";
@@ -43,6 +46,9 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        progressBar = findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.GONE);
 
         password_text = findViewById(R.id.password);
         email_text = findViewById(R.id.email);
@@ -90,19 +96,23 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Login.this, "Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Verifying", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.VISIBLE);
 
                 if (!TextUtils.isEmpty(email_text.getText().toString()) && !TextUtils.isEmpty(password_text.getText().toString())){
                     check();
                 }
                 else{
                     Toast.makeText(Login.this, "Please fill in all credentials", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+
                 }
             }
         });
     }
 
     public void check(){
+        int flag = 0;
         if (connection!=null){
             Statement statement = null;
             try {
@@ -110,6 +120,8 @@ public class Login extends AppCompatActivity {
                 ResultSet resultSet = statement.executeQuery("Select * from Tutor WHERE email = '" + email_text.getText().toString() + "';");
 
                 byte[] salt = new byte[16];
+
+                flag = 0;
 
                 while (resultSet.next()){
 
@@ -141,15 +153,24 @@ public class Login extends AppCompatActivity {
                         }
 
                         if (hash.equals(resultSet.getString(4))){
-                            Toast.makeText(this, "Correct Password", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            flag = 1;
+                            Toast.makeText(this, resultSet.getString(1), Toast.LENGTH_SHORT).show();
+
+                            Bundle bundle = new Bundle();
+                            Intent intent = new Intent(getApplicationContext(), Profile.class);
+                            bundle.putString("TutorID", resultSet.getString(1));
+                            bundle.putString("TutorName", resultSet.getString(2));
+
+                            intent.putExtras(bundle);
+                            startActivity(intent);
                         }
-
                     }
-
                 }
 
-                Toast.makeText(this, "Inorrect Password", Toast.LENGTH_SHORT).show();
+                if (flag == 0) {
+                    Toast.makeText(this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
 
 
             } catch (SQLException e) {

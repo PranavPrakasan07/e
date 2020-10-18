@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="4dp"
-    android:background="#313131"
+    android:background="#212121"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,7 +12,8 @@
         android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#313131"
+        android:background="#414141"
+        android:layout_margin="8dp"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,14 +22,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#313131">
+            android:background="#414141">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
-                android:scaleType="centerCrop"
-                android:background="#313131"
+                android:backgroundTint="#212121"
+                android:backgroundTintMode="screen"
+                android:scaleType="fitXY"
+                android:background="#212121"
                 app:layout_constraintBottom_toTopOf="@+id/title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -45,6 +48,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Video Name"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +65,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:text="Views"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

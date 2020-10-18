@@ -26,7 +26,7 @@ import java.util.Locale;
 
 public class UploadActivity extends AppCompatActivity {
 
-    private TextView textView;
+    private TextView textView, name_message;
     Button button;
 
     private static String ip = "192.168.43.205";
@@ -47,6 +47,13 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
+        Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
+        final String tutorName = bundle.getString("TutorName");
+
+        assert tutorName != null;
+        Log.d("Upload Activity", tutorName);
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         try {
@@ -62,20 +69,21 @@ public class UploadActivity extends AppCompatActivity {
             Log.d("Status", "Failure");
         }
 
-
         send = findViewById(R.id.send_button);
 
+        name_message = findViewById(R.id.HiMessage);
         title = findViewById(R.id.upload_video_title);
         domain = findViewById(R.id.upload_domain);
         vlink = findViewById(R.id.upload_video_link);
         ilink = findViewById(R.id.thumbnail_link);
         description = findViewById(R.id.upload_description);
 
+        name_message.setText("Hi " + tutorName + "!");
+
         send.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                send.setBackgroundResource(R.drawable.correct_data);
                 try {
                     send_Request();
                 } catch (SQLException e) {
@@ -103,11 +111,13 @@ public class UploadActivity extends AppCompatActivity {
 
             try {
                 statement = connection.createStatement();
-                query = "INSERT INTO Videos VALUES ('" + "tutorID" + "', '" + "video_number" + "', '" + title.getText().toString() + "', '" +
+                query = "INSERT INTO Videos VALUES ('" + "T000000000" + "', '" + "VV00000000" + "', '" + title.getText().toString() + "', '" +
                         ilink.getText().toString() + "', '" + vlink.getText().toString() + "', '" + upload_date + "', '" + domain.getText().toString() +
-                        "', '" + "tutor_name" + "', '" + description.getText().toString() + "');";
-
+                        "', '" + "T000000000" + "', '" + description.getText().toString() + "', 'N');";
                 statement.executeUpdate(query);
+
+                send.setBackgroundResource(R.drawable.correct_data);
+                Toast.makeText(this, "Uploading", Toast.LENGTH_SHORT).show();
 
             } catch (SQLException e) {
                 e.printStackTrace();
