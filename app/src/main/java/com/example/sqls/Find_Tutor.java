@@ -54,7 +54,7 @@ public class Find_Tutor extends AppCompatActivity {
 
     public void find_tutor_from_filter(){
 
-        query = "SELECT * FROM Tutor WHERE tutorID <> 'T000000000'";
+        query = "SELECT * FROM Tutor WHERE tutorID <> 'TTA0000000'";
         condition = "";
 
         if (connection!=null){
@@ -111,12 +111,13 @@ public class Find_Tutor extends AppCompatActivity {
 
                 while (resultSet.next()){
                     number_of_results++;
-                    results += resultSet.getString(1) + ", " +
-                            resultSet.getString(2) + ", " +
-                            resultSet.getString(3) + ", " +
-                            resultSet.getString(5) + ", " +
-                            resultSet.getString(6) + ", " +
-                            resultSet.getString(7) +  "\n\n";
+                    results += number_of_results + "\n" +
+                            "Tutor ID : " + resultSet.getString(1) + ", \n" +
+                            "Tutor Name : " + resultSet.getString(2) + ", \n" +
+                            "Tutor Contact : " + resultSet.getString(3) + ", \n" +
+                            "Tutor Email : " + resultSet.getString(5) + ", \n" +
+                            "Working availability : " + resultSet.getString(6) + ", \n" +
+                            "Number of uploads : " + resultSet.getString(7) +  "\n\n\n";
 
                     Log.d("Message", resultSet.getString(1));
                     Log.d("Message", resultSet.getString(2));
@@ -125,6 +126,7 @@ public class Find_Tutor extends AppCompatActivity {
                     Log.d("Message", resultSet.getString(5));
                     Log.d("Message", resultSet.getString(6));
                     Log.d("Message", resultSet.getString(7));
+
                 }
 
                 filter_results.setText(results);
@@ -203,21 +205,5 @@ public class Find_Tutor extends AppCompatActivity {
             }
         });
 
-        ResultSet resultSet = null;
-        if (connection!=null){
-            Statement statement = null;
-            try {
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery("Select * from tabla");
-                Log.d("Message", resultSet.getString(2));
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            Log.d("Message", "Connection is null");
-        }
     }
-
 }

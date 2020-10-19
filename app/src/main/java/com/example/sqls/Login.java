@@ -71,21 +71,6 @@ public class Login extends AppCompatActivity {
             Log.d("Message", "FAILURE");
         }
 
-        ResultSet resultSet = null;
-        if (connection!=null){
-            Statement statement = null;
-            try {
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery("Select * from Tutor");
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            Log.d("Message", "Connection is null");
-        }
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +97,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void check(){
-        int flag = 0;
+        int flag;
         if (connection!=null){
             Statement statement = null;
             try {

@@ -40,7 +40,7 @@ public class VideoMainActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         try {
-            myRef = database.getReference().child("1").child("categories").child("0").child("videos");
+            myRef = database.getReference().child("1").child("tutors").child("0").child("videos");
         }
         catch(Exception e){
             Log.d("TAG", "Reference not available");
@@ -100,6 +100,7 @@ public class VideoMainActivity extends AppCompatActivity {
 
     private void getData() {
 
+        final int[] count = {0};
         final int[] number_of_videos = {12};
 
                 for (int i = 0; i< number_of_videos[0]; i++){
@@ -114,17 +115,26 @@ public class VideoMainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            int count = 0;
+                            count[0] = 0;
                             Video v = new Video();
+
 
                             for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
 
-                                switch (count){
-                                    case 0:v.setDescription(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
-                                    case 1:v.setVideoURL(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
-                                    case 2:v.setAuthor(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
-                                    case 3:v.setImageURL(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
-                                    case 4:v.setTitle(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
+                                switch (count[0]){
+                                    case 0:v.setDescription(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                                        count[0]++;break;
+                                    case 1:v.setVideoURL(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                                        count[0]++;break;
+                                    case 2:v.setSubtitle(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                                        count[0]++;break;
+                                    case 3:v.setImageURL(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                                        count[0]++;break;
+                                    case 4:v.setTitle(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                                        count[0]++;break;
+                                    case 5:v.setAuthor(Objects.requireNonNull(dataSnapshot1.getValue()).toString());
+                                        count[0]++;break;
+
                                 }
                             }
 

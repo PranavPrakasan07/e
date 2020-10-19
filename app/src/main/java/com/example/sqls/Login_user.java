@@ -50,13 +50,11 @@ public class Login_user extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar3);
         progressBar.setVisibility(View.GONE);
 
-
         password_text = findViewById(R.id.password);
         email_text = findViewById(R.id.email);
 
         login = findViewById(R.id.login_button);
         signup = findViewById(R.id.sign_up_button);
-
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -70,21 +68,6 @@ public class Login_user extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
             Log.d("Message", "FAILURE");
-        }
-
-        ResultSet resultSet = null;
-        if (connection!=null){
-            Statement statement = null;
-            try {
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery("Select * from Users");
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            Log.d("Message", "Connection is null");
         }
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +96,10 @@ public class Login_user extends AppCompatActivity {
     }
 
     public void check(){
+        int flag;
+
+        flag = 0;
+
         if (connection!=null){
             Statement statement = null;
             try {
@@ -151,16 +138,19 @@ public class Login_user extends AppCompatActivity {
                         }
 
                         if (hash.equals(resultSet.getString(4))){
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            flag = 1;
+                            Toast.makeText(this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), VideoMainActivity.class));
                         }
 
                     }
 
                 }
 
+                if(flag == 0){
                 Toast.makeText(this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.GONE);
-
+            }
 
 
             } catch (SQLException e) {

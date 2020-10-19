@@ -15,6 +15,7 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -22,8 +23,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Player extends AppCompatActivity {
 
-    private Button desc_show_button, sub_button;
+    private Button desc_show_button, sub_button, view_button;
     private ScrollView desc_scroller;
+
+    String id = "TTA0000000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class Player extends AppCompatActivity {
         desc_show_button = findViewById(R.id.desc_appear_button);
         desc_scroller = findViewById(R.id.description_scroller);
         sub_button = findViewById(R.id.playbutton);
+        view_button = findViewById(R.id.view_tutor);
 
         desc_show_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +52,17 @@ public class Player extends AppCompatActivity {
             }
         });
 
+        view_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Profile.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("TutorID", id);
+                bundle.putString("TutorName", "");
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
 //        TextView title = findViewById(R.id.video_title);
         TextView desc = findViewById(R.id.video_description);
@@ -71,6 +86,7 @@ public class Player extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoPlayer.setMediaController(mediaController);
 
+        id = video.getAuthor();
 
         SubDB studentDB = new SubDB(getApplicationContext());
         SQLiteDatabase database = studentDB.getWritableDatabase();
@@ -108,7 +124,6 @@ public class Player extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
 
             onBackPressed();
-            
         }
 
         return super.onOptionsItemSelected(item);

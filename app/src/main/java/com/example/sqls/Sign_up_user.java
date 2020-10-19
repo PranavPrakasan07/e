@@ -83,7 +83,7 @@ public class Sign_up_user extends AppCompatActivity {
                 String query = null;
                 try {
                     query = "INSERT INTO Users VALUES ('" + id + "', '" + name_text.getText().toString() + "', '" + contact_text.getText().toString()
-                            + "','" + hash + "','" + email_text.getText().toString() + "', '" + "T000000000" + "','" + salt_string + "');";
+                            + "','" + hash + "','" + email_text.getText().toString() + "', '" + "TTA0000000" + "','" + salt_string + "');";
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -137,22 +137,6 @@ public class Sign_up_user extends AppCompatActivity {
             Log.d("Message", "FAILURE");
         }
 
-        ResultSet resultSet = null;
-        if (connection!=null){
-            Statement statement = null;
-            try {
-                statement = connection.createStatement();
-                resultSet = statement.executeQuery("Select * from Users");
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-           Log.d("Message", "Connection is null");
-        }
-
-
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,8 +150,6 @@ public class Sign_up_user extends AppCompatActivity {
                 else{
                     Toast.makeText(Sign_up_user.this, "Please fill in all credentials", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }
@@ -200,5 +182,4 @@ public class Sign_up_user extends AppCompatActivity {
         sr.nextBytes(salt);
         return salt;
     }
-
 }

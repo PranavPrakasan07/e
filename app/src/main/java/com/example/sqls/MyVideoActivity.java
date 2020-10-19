@@ -48,7 +48,7 @@ public class MyVideoActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         try {
-            myRef = database.getReference().child("1").child("categories").child(ID).child("videos");
+            myRef = database.getReference().child("1").child("tutors").child(ID).child("videos");
             getData();
 
         }
@@ -74,43 +74,11 @@ public class MyVideoActivity extends AppCompatActivity {
             }
         });
 
-//
-//        StudentDB studentDB = new StudentDB(this);
-//        SQLiteDatabase database = studentDB.getWritableDatabase();
-//
-//        ContentValues contentValues = new ContentValues();
-//        int row;
-//
-//        contentValues.put("sid", 1);
-//        contentValues.put("sname", "Szn");
-//        contentValues.put("smarks", 234);
-//
-//        row = (int)database.insert("student", null, contentValues);
-//
-//        contentValues.put("sid", 2);
-//        contentValues.put("sname", "Sweerwrzn");
-//        contentValues.put("smarks", 1234);
-//
-//        row = (int)database.insert("student", null, contentValues);
-//
-//        Log.d("Message", Integer.toString(row));
-//
-//        SQLiteDatabase database1 = studentDB.getReadableDatabase();
-//        String[] projection = {"sid", "sname", "smarks"};
-//
-//        Cursor cursor = database1.query("student", projection,null, null, null, null, null);
-//
-//        for (int i=0; i<4; i++)
-//        {
-//            cursor.moveToPosition(i);
-//            Log.d("Name", cursor.getString(1));
-//        }
-
     }
 
     private void getData() {
 
-        final int[] number_of_videos = {1};
+        final int[] number_of_videos = {12};
 
                 for (int i = 0; i< number_of_videos[0]; i++){
                     myRef.child(String.valueOf(i)).addValueEventListener(new ValueEventListener() {
@@ -132,9 +100,10 @@ public class MyVideoActivity extends AppCompatActivity {
                                 switch (count){
                                     case 0:v.setDescription(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
                                     case 1:v.setVideoURL(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
-                                    case 2:v.setAuthor(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
+                                    case 2:v.setSubtitle(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
                                     case 3:v.setImageURL(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
                                     case 4:v.setTitle(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
+                                    case 5:v.setAuthor(Objects.requireNonNull(dataSnapshot1.getValue()).toString());count++;break;
                                 }
                             }
 
@@ -150,108 +119,4 @@ public class MyVideoActivity extends AppCompatActivity {
                     });
                 }
     }
-
-    /*
-    private void getJsonData() {
-        String URL = "https://raw.githubusercontent.com/PranavPrakasan07/E-Learning/master/datafile.json?token=AOC7BBH2QJCJ75IXQMKOFG27OWY62";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                JSONArray categories = null;
-                try {
-                    categories = response.getJSONArray("categories");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                JSONObject categoriesData = null;
-                try {
-                    assert categories != null;
-                    categoriesData = categories.getJSONObject(0);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                JSONArray videos = null;
-                try {
-                    assert categoriesData != null;
-                    videos = categoriesData.getJSONArray("videos");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                assert videos != null;
-                for (int i = 0; i<videos.length(); i++){
-                    JSONObject video = null;
-                    try {
-                        video = videos.getJSONObject(i);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        assert video != null;
-                        Log.d(TAG, "onResponse" + video.getString("title"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    Video v = new Video();
-                    try {
-                        v.setTitle(video.getString("title"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        v.setAuthor(video.getString("subtitle"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        v.setDescription(video.getString("description"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        v.setImageURL(video.getString("thumb"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    JSONArray videoURL = null;
-                    try {
-                        videoURL = video.getJSONArray("sources");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    assert videoURL != null;
-                    //gs://loginsignup-d02d5.appspot.com/WIN_20200826_00_03_14_Pro.mp4
-                    //videoURL.getString(0)
-                    v.setVideoURL("https://firebasestorage.googleapis.com/v0/b/loginsignup-d02d5.appspot.com/o/WIN_20200826_00_03_14_Pro.mp4?alt=media&token=e9689bd6-01b2-4dca-8027-62e609056baa");
-
-                    all_videos.add(v);
-
-                    adapter.notifyDataSetChanged();
-
-                    Log.d(TAG, "onResponse" + v.getVideoURL()); 
-
-                }
-
-
-                Log.d(TAG, "onResponse" + response);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(TAG, "Error message " + error.getMessage());
-            }
-        });
-
-        requestQueue.add(objectRequest);
-    }
-
-
-     */
 }

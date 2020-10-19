@@ -7,6 +7,7 @@ public class Video implements Serializable {
     private String title;
     private String description;
     private String author;
+    private String subtitle;
     private String videoURL;
     private String imageURL;
 
@@ -32,6 +33,14 @@ public class Video implements Serializable {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String author) {
+        this.subtitle = subtitle;
     }
 
     public String getVideoURL() {
