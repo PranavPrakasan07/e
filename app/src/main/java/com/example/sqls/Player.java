@@ -105,6 +105,18 @@ public class Player extends AppCompatActivity {
             String[] projection = {"videoLink"};
 
             Cursor cursor = database1.query("watch_history", projection,null, null, null, null, null);
+
+            for (int i=1; i<7; i++)
+            {
+                cursor.moveToPosition(i);
+                Log.d("Name", cursor.getString(1));
+            }
+
+//            while(cursor.isLast()) {
+//                Log.d("Message", cursor.getString(1));
+//                cursor.moveToNext();
+//            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
