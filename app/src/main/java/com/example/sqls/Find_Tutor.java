@@ -54,7 +54,7 @@ public class Find_Tutor extends AppCompatActivity {
 
     public void find_tutor_from_filter(){
 
-        query = "SELECT * FROM Tutor WHERE tutorID <> 'TTA0000000'";
+        query = "SELECT * FROM Tutor WHERE tutorID <> 'TT00000000'";
         condition = "";
 
         if (connection!=null){
@@ -67,7 +67,7 @@ public class Find_Tutor extends AppCompatActivity {
                 }
 
                 if (!TextUtils.isEmpty(email.getText().toString())){
-                    condition += " AND tutorName = '" + name.getText().toString() + "'";
+                    condition += " AND email = '" + email.getText().toString() + "'";
                 }
 
                 if (!TextUtils.isEmpty(contact.getText().toString())){

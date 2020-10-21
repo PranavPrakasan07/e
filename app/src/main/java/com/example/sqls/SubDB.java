@@ -8,12 +8,12 @@ import androidx.annotation.Nullable;
 
 public class SubDB extends SQLiteOpenHelper {
     public SubDB(@Nullable Context context) {
-        super(context, "history.db", null, 1);
+        super(context, "watch_history.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table watch_history (videoLink text unique)");
+        db.execSQL("create table watch_history (videoTitle text)");
 
     }
 

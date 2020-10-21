@@ -95,22 +95,25 @@ public class Player extends AppCompatActivity {
         int row;
 
         try {
-            contentValues.put("videoLink", String.valueOf(videoUri));
+            contentValues.put("videoTitle", String.valueOf(video.getTitle()));
 
             row = (int)database.insert("watch_history", null, contentValues);
 
             Log.d("Message", Integer.toString(row));
 
             SQLiteDatabase database1 = studentDB.getReadableDatabase();
-            String[] projection = {"videoLink"};
+            String[] projection = {"videoTitle"};
 
-            Cursor cursor = database1.query("watch_history", projection,null, null, null, null, null);
+            Cursor cursor = database1.rawQuery("SELECT * FROM watch_history", null);
 
-            for (int i=1; i<7; i++)
+            int i = -1;
+            while(!cursor.isLast())
             {
-                cursor.moveToPosition(i);
+                cursor.moveToPosition(++i);
                 Log.d("Name", cursor.getString(1));
             }
+
+            cursor.close();
 
 //            while(cursor.isLast()) {
 //                Log.d("Message", cursor.getString(1));

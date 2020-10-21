@@ -105,6 +105,7 @@ public class Profile extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), UploadActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("TutorName", tutorName);
+                bundle.putString("TutorID", ID);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

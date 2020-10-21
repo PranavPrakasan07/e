@@ -41,7 +41,7 @@ public class UploadActivity extends AppCompatActivity {
 
     Button send;
     EditText title, vlink, ilink, domain, description;
-
+    String tutorID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +50,7 @@ public class UploadActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
         final String tutorName = bundle.getString("TutorName");
+        tutorID = bundle.getString("TutorID");
 
         assert tutorName != null;
         Log.d("Upload Activity", tutorName);
@@ -102,21 +103,32 @@ public class UploadActivity extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
         String formattedDate = df.format(c);
 
-        //"INSERT INTO Videos VALUES ('tutorID', 'video_number', 'video_title', 'thumbnail_link', 'video_link', 'upload_date', 'domain', 'tutor_name', 'description')"
 
         if (connection!=null){
             Statement statement = null;
 
-            String upload_date = "2020-02-02";
+            String upload_date = formattedDate;
+
+            statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM Videos");
+            resultSet.next();
+
+            String total_vid = "VVA000000" + resultSet.getString(1);
+            Log.d("Total number vids", total_vid);
+
+            Log.d("Total number vids", tutorID);
+            Log.d("Total number vids", formattedDate);
 
             try {
                 statement = connection.createStatement();
-                query = "INSERT INTO Videos VALUES ('" + "T000000000" + "', '" + "VV00000000" + "', '" + title.getText().toString() + "', '" +
+                query = "INSERT INTO Videos VALUES ('" + tutorID + "', '" + total_vid + "', '" + title.getText().toString() + "', '" +
                         ilink.getText().toString() + "', '" + vlink.getText().toString() + "', '" + upload_date + "', '" + domain.getText().toString() +
-                        "', '" + "T000000000" + "', '" + description.getText().toString() + "', 'N');";
+                        "', '" + tutorID + "', '" + description.getText().toString() + "', 'N');";
                 statement.executeUpdate(query);
 
                 send.setBackgroundResource(R.drawable.correct_data);
+                send.setText("Sent");
                 Toast.makeText(this, "Uploading", Toast.LENGTH_SHORT).show();
 
             } catch (SQLException e) {
@@ -124,7 +136,7 @@ public class UploadActivity extends AppCompatActivity {
             }
         }
         else {
-            textView.setText("Connection is null");
+            Log.d("Message", "Connection is null");
         }
     }
 }
